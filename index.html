@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>EV Network & Charging System </title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>EV Network & Charging System </h1>
+  </header>
+
+  <div class="app">
+    <div class="left">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div class="small">Interactive Graph (SVG). Nodes = charging stations. Edges = roads (weights)</div>
+        </div>
+        <div class="small">Nodes: <strong id="nodeCount">22</strong> • Edges: <strong id="edgeCount">—</strong></div>
+      </div>
+
+      <div id="svgWrap">
+        <svg id="canvas" viewBox="0 0 1200 800" preserveAspectRatio="xMinYMin meet"></svg>
+      </div>
+
+      <div style="margin-top:10px" class="controls">
+        <button id="primBtn">Run Prim's (MST)</button>
+        <button id="kruskalBtn">Run Kruskal's (MST)</button>
+        <button id="fleuryBtn">Run Fleury's (Maintenance Route)</button>
+        <button id="colorBtn">Run Greedy Coloring (Slots)</button>
+        <button id="resetBtn" class="secondary">Reset Highlights</button>
+      </div>
+
+      <div class="legend">
+        <div class="item"><span class="dot" style="background:#888"></span> Edge</div>
+        <div class="item"><span class="dot" style="background:limegreen"></span> MST Edge</div>
+        <div class="item"><span class="dot" style="background:#ff6b6b"></span> Traversal Edge</div>
+        <div class="item"><span class="dot" style="background:#0b66c3"></span> Node</div>
+      </div>
+
+      <div class="output" id="outputBox">
+        <div><strong>MST Cost:</strong> <span id="mstCost">—</span></div>
+        <div><strong>Maintenance Route:</strong> <span id="routeInfo">—</span></div>
+        <div><strong>Slots Required:</strong> <span id="slotInfo">—</span></div>
+        <div id="extraInfo" class="small" style="margin-top:8px;color:#333"></div>
+      </div>
+    </div>
+
+    <div class="right">
+      <h3 style="margin:0 0 8px 0">Graph Summary</h3>
+      <div class="info">
+        This demo uses a example graph with 22 vertices and 38 edges.
+        <ul style="padding-left:18px">
+          <li><strong>Prim / Kruskal:</strong> Minimum spanning tree (min-cost network)</li>
+          <li><strong>Fleury:</strong> Maintenance route visiting every edge once (Eulerian path exists)</li>
+          <li><strong>Greedy Coloring:</strong> Assign charging time slots to avoid adjacent conflicts</li>
+        </ul>
+      </div>
+
+      <div style="margin-top:12px">
+        <h4 style="margin:8px 0">How to interpret</h4>
+        <div class="small">Green edges = MST. Red = traversal. Node colors = assigned slots.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>EV Network & Charging System — Graph Theory demo • HTML/CSS/JS</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
